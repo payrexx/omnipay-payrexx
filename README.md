@@ -10,7 +10,7 @@ This package implements Payrexx support for Omnipay.
 Payrexx is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `payrexx/omnipay` with Composer:
 
 ```
-composer require league/omnipay payrexx/omnipay
+composer require league/omnipay payrexx/omnipay-payrexx
 ```
 
 
