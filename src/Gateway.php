@@ -5,7 +5,9 @@ namespace Omnipay\Payrexx;
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Message\NotificationInterface;
 use Omnipay\Common\Message\RequestInterface;
+use Omnipay\Payrexx\Message\Request\ChargeTransactionRequest;
 use Omnipay\Payrexx\Message\Request\CompletePurchaseRequest;
+use Omnipay\Payrexx\Message\Request\FetchPaymentMethodsRequest;
 use Omnipay\Payrexx\Message\Request\FetchTransactionRequest;
 use Omnipay\Payrexx\Message\Request\PurchaseRequest;
 use Omnipay\Payrexx\Message\Request\RefundRequest;
@@ -119,6 +121,30 @@ class Gateway extends AbstractGateway
     {
         /** @var RefundRequest $request */
         $request = $this->createRequest(RefundRequest::class, $parameters);
+
+        return $request;
+    }
+
+    /**
+     * @param array $parameters
+     * @return ChargeTransactionRequest
+     */
+    public function chargeTransaction(array $parameters = [])
+    {
+        /** @var ChargeTransactionRequest $request */
+        $request = $this->createRequest(ChargeTransactionRequest::class, $parameters);
+
+        return $request;
+    }
+
+    /**
+     * @param array $parameters
+     * @return FetchPaymentMethodsRequest
+     */
+    public function fetchPaymentMethods(array $parameters = [])
+    {
+        /** @var FetchPaymentMethodsRequest $request */
+        $request = $this->createRequest(FetchPaymentMethodsRequest::class, $parameters);
 
         return $request;
     }
