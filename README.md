@@ -5,6 +5,9 @@
 Payrexx is a framework agnostic, multi-gateway payment processing library for PHP.
 This package implements Payrexx support for Omnipay.
 
+Maintenance Notice
+This repository is currently **not actively maintained**. However, community contributions such as bug reports, feature requests, and pull requests are very welcome!
+
 ## Installation
 
 Payrexx is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `payrexx/omnipay` with Composer:
