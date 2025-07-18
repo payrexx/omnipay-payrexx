@@ -294,15 +294,15 @@ class PurchaseRequest extends AbstractRequest
         $data['successRedirectUrl'] = $this->getSuccessRedirectUrl() ?? null;
         $data['failedRedirectUrl'] = $this->getFailedRedirectUrl() ?? null;
         $data['cancelRedirectUrl'] = $this->getCancelRedirectUrl() ?? null;
-        $data['skipResultPage'] = $this->getSkipResultPage() ?? null;
-        $data['psp'] = $this->getPsp() ?? null;
-        $data['pm'] = $this->getPm() ?? null;
-        $data['preAuthorization'] = $this->getPreAuthorization() ?? null;
-        $data['chargeOnAuthorization'] = $this->getChargeOnAuthorization() ?? null;
-        $data['reservation'] = $this->getReservation() ?? null;
-        $data['referenceId'] = $this->getReferenceId() ?? null;
-        $data['buttonText'] = $this->getButtonText() ?? null;
-        $data['successMessage'] = $this->getSuccessMessage() ?? null;
+        $data['skipResultPage'] = $this->getSkipResultPage() ?? false;
+        $data['psp'] = $this->getPsp() ?? [];
+        $data['pm'] = $this->getPm() ?? [];
+        $data['preAuthorization'] = $this->getPreAuthorization() ?? false;
+        $data['chargeOnAuthorization'] = $this->getChargeOnAuthorization() ?? false;
+        $data['reservation'] = $this->getReservation() ?? false;
+        $data['referenceId'] = $this->getReferenceId() ?? '';
+        $data['buttonText'] = $this->getButtonText() ?? [];
+        $data['successMessage'] = $this->getSuccessMessage() ?? [];
 
         // Contact fields
         $data['title'] = $this->getTitle() ?? null;
