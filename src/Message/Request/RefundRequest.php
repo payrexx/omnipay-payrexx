@@ -33,6 +33,15 @@ class RefundRequest extends AbstractRequest
     }
 
     /**
+     * @param string $value
+     * @return $this
+     */
+    public function setApiBaseDomain($value)
+    {
+        return $this->setParameter('apiBaseDomain', $value);
+    }
+
+    /**
      * @return array
      */
     public function getData()
@@ -68,6 +77,14 @@ class RefundRequest extends AbstractRequest
     }
 
     /**
+     * @return string
+     */
+    public function getApiBaseDomain()
+    {
+        return $this->getParameter('apiBaseDomain');
+    }
+
+    /**
      * @param array $data
      * @return RefundResponse
      * @throws InvalidRequestException
@@ -75,7 +92,7 @@ class RefundRequest extends AbstractRequest
     public function sendData($data)
     {
         try {
-            $payrexx = new Payrexx($data['instance'], $data['apiKey']);
+            $payrexx = new Payrexx($data['instance'], $data['apiKey'], '', $data['apiBaseDomain']);
 
             $transaction = new Transaction();
             $transaction->setId($data['id']);

@@ -36,6 +36,15 @@ class PurchaseRequest extends AbstractRequest
      * @param string $value
      * @return $this
      */
+    public function setApiBaseDomain($value)
+    {
+        return $this->setParameter('apiBaseDomain', $value);
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
     public function setVatRate($value)
     {
         return $this->setParameter('vatRate', $value);
@@ -281,12 +290,13 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('apiKey', 'instance', 'amount', 'currency');
+        $this->validate('apiKey', 'instance', 'apiBaseDomain', 'amount', 'currency');
 
         $data = [];
 
         $data['apiKey'] = $this->getApiKey();
         $data['instance'] = $this->getInstance();
+        $data['apiBaseDomain'] = $this->getApiBaseDomain() ?: '';
         $data['amount'] = $this->getAmountInteger();
         $data['currency'] = $this->getCurrency();
         $data['vatRate'] = $this->getVatRate() ?? null;
@@ -336,6 +346,14 @@ class PurchaseRequest extends AbstractRequest
     public function getInstance()
     {
         return $this->getParameter('instance');
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiBaseDomain()
+    {
+        return $this->getParameter('apiBaseDomain');
     }
 
     /**
@@ -562,7 +580,7 @@ class PurchaseRequest extends AbstractRequest
     public function sendData($data)
     {
         try {
-            $payrexx = new Payrexx($data['instance'], $data['apiKey']);
+            $payrexx = new Payrexx($data['instance'], $data['apiKey'], '', $data['apiBaseDomain']);
             $gateway = new Gateway();
 
             $gateway->setAmount($data['amount']);

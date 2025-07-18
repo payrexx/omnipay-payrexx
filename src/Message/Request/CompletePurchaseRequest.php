@@ -33,6 +33,15 @@ class CompletePurchaseRequest extends AbstractRequest
     }
 
     /**
+     * @param string $value
+     * @return $this
+     */
+    public function setApiBaseDomain($value)
+    {
+        return $this->setParameter('apiBaseDomain', $value);
+    }
+
+    /**
      * @return array
      */
     public function getData()
@@ -42,6 +51,7 @@ class CompletePurchaseRequest extends AbstractRequest
         $data = [];
         $data['apiKey'] = $this->getApiKey();
         $data['instance'] = $this->getInstance();
+        $data['apiBaseDomain'] = $this->getApiBaseDomain() ?: '';
         $data['id'] = $this->getTransactionReference();
 
         return $data;
@@ -64,6 +74,14 @@ class CompletePurchaseRequest extends AbstractRequest
     }
 
     /**
+     * @return string
+     */
+    public function getApiBaseDomain()
+    {
+        return $this->getParameter('apiBaseDomain');
+    }
+
+    /**
      * @param array $data
      * @return CompletePurchaseResponse
      * @throws InvalidRequestException
@@ -71,7 +89,7 @@ class CompletePurchaseRequest extends AbstractRequest
     public function sendData($data)
     {
         try {
-            $payrexx = new Payrexx($data['instance'], $data['apiKey']);
+            $payrexx = new Payrexx($data['instance'], $data['apiKey'], '', $data['apiBaseDomain']);
             $gateway = new Gateway();
             $gateway->setId($data['id']);
             $response = $payrexx->getOne($gateway);
