@@ -24,6 +24,7 @@ class GatewayTest extends GatewayTestCase
         $this->gateway = new Gateway();
         $this->gateway->setApiKey('API_KEY');
         $this->gateway->setInstance('INSTANCE');
+        $this->gateway->setApiBaseDomain('API_BASE_DOMAIN');
     }
 
     /**

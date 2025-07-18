@@ -76,6 +76,23 @@ class Gateway extends AbstractGateway
     }
 
     /**
+     * @return string
+     */
+    public function getApiBaseDomain()
+    {
+        return $this->getParameter('apiBaseDomain');
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function setApiBaseDomain($value)
+    {
+        return $this->setParameter('apiBaseDomain', $value);
+    }
+
+    /**
      * @param array $parameters
      * @return PurchaseRequest
      */
